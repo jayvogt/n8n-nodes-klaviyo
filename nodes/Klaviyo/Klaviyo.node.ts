@@ -88,97 +88,110 @@ export class Klaviyo implements INodeType {
 		for (let i = 0; i < items.length; i++) {
 			let body: any = {};
 
-			if (action === 'template') {
-				if (operation === 'get_one') {
-					const id = this.getNodeParameter('templateId', 0) as string;
-					const fields = this.getNodeParameter('fields', 0) as string[];
+			switch(action) {
+				case 'template': {
 
-					route = `/templates/${id}/?fields[template]=${fields.join(',')}`;
-				}
+					switch(operation) {
+						case 'get_one': {
+							const id = this.getNodeParameter('templateId', 0) as string;
+							const fields = this.getNodeParameter('fields', 0) as string[];
+							route = `/templates/${id}/${ fields.length > 0 ? '?fields[template]=' + fields.join(',') : ''}`;
+							break;
+						} // end case: get_one
 
-				if (operation === 'post_render') {
-					const id = this.getNodeParameter('templateId', 0) as string;
-					method = 'POST';
-					const variables = this.getNodeParameter('variables', 0) as {
-						variable: {
-							name: string;
-							value: string;
-						}[];
-					};
+						case 'post_render': {
+							const id = this.getNodeParameter('templateId', 0) as string;
+							method = 'POST';
+							const variables = this.getNodeParameter('variables', 0) as {
+								variable: {
+									name: string;
+									value: string;
+								}[];
+							};
 
-					body = {
-						data: {
-							type: 'template',
-							attributes: {
-								context: variables.variable.reduce((acc, cur) => {
-									acc[cur.name] = cur.value;
-									return acc;
-								}, {} as any),
+							body = {
+								data: {
+									type: 'template',
+									attributes: {
+										context: variables.variable.reduce((acc, cur) => {
+											acc[cur.name] = cur.value;
+											return acc;
+										}, {} as any),
 
-								id: id,
-							},
-						},
-					};
-
-					route = `/template-render`;
-				}
-			} else if (action === 'event') {
-				if (operation === 'post_create') {
-					const metricName = this.getNodeParameter('metricName', 0) as string;
-					const properties = this.getNodeParameter('properties', 0) as {
-						metricService?: { metricService: string };
-						time?: { time: string };
-						value?: { value: number };
-						uniqueId?: { uniqueId: string };
-					};
-					const profiles = this.getNodeParameter('profile', 0) as {
-						profile: {
-							key: string;
-							value: string;
-						}[];
-					};
-					const attributes = this.getNodeParameter('attributes', 0) as {
-						attribute: {
-							key: string;
-							value: string;
-						}[];
-					};
-
-					method = 'POST';
-
-					body = {
-						data: {
-							type: 'event',
-							attributes: {
-								// context: variables.variable.reduce((acc, cur) => {
-								// 	acc[cur.name] = cur.value;
-								// 	return acc;
-								// }, {} as any),
-								profile: profiles.profile.reduce((acc, cur) => {
-									acc[cur.key] = cur.value;
-									return acc;
-								}, {} as any),
-								metric: {
-									name: metricName,
+										id: id,
+									},
 								},
-								properties: Object.entries(attributes.attribute).reduce((acc, cur) => {
-									if (cur[1]) {
-										acc[cur[1].key] = cur[1].value;
-									}
-									return acc;
-								}, {} as any),
-							},
-						},
-					};
+							};
 
-					const entries = Object.entries(properties);
-					for (const [key, value] of entries) {
-						body.data.attributes[key] = (value as any)[key];
-					}
+							route = `/template-render`;
+							break;
+						} // end case: post_render
+					}; // end switch: operation
+					break;
+				} // end case: template
+				
+				case 'event': {
+					switch (operation) {
+						case 'post_create': {
+							const metricName = this.getNodeParameter('metricName', 0) as string;
+							const properties = this.getNodeParameter('properties', 0) as {
+								metricService?: { metricService: string };
+								time?: { time: string };
+								value?: { value: number };
+								uniqueId?: { uniqueId: string };
+							};
+							const profiles = this.getNodeParameter('profile', 0) as {
+								profile: {
+									key: string;
+									value: string;
+								}[];
+							};
+							const attributes = this.getNodeParameter('attributes', 0) as {
+								attribute: {
+									key: string;
+									value: string;
+								}[];
+							};
 
-					route = `/events`;
+							method = 'POST';
+
+							body = {
+								data: {
+									type: 'event',
+									attributes: {
+										// context: variables.variable.reduce((acc, cur) => {
+										// 	acc[cur.name] = cur.value;
+										// 	return acc;
+										// }, {} as any),
+										profile: profiles.profile.reduce((acc, cur) => {
+											acc[cur.key] = cur.value;
+											return acc;
+										}, {} as any),
+										metric: {
+											name: metricName,
+										},
+										properties: Object.entries(attributes.attribute).reduce((acc, cur) => {
+											if (cur[1]) {
+												acc[cur[1].key] = cur[1].value;
+											}
+											return acc;
+										}, {} as any),
+									},
+								},
+							};
+
+							const entries = Object.entries(properties);
+							for (const [key, value] of entries) {
+								body.data.attributes[key] = (value as any)[key];
+							}
+
+							route = `/events`;
+							break;
+						} // end case: post_create
+					} // end switch: operation
+					break;
 				}
-			}
+			} // end switch: action
 
 			const response = await this.helpers.httpRequest({
 				method,
