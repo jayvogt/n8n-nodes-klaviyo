@@ -190,7 +190,17 @@ export class Klaviyo implements INodeType {
 						} // end case: post_create
 					} // end switch: operation
 					break;
-				}
+				} // end case: event
+
+				case 'flow': {
+					switch(operation) {
+						case 'get_all': {
+							route = `/flows`;
+							break;
+						} // end case: get_all
+					} // end switch: operation
+					break;
+				} // end case: flow
 			} // end switch: action
 
 			const response = await this.helpers.httpRequest({
