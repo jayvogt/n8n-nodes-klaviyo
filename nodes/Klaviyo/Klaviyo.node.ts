@@ -91,6 +91,12 @@ export class Klaviyo implements INodeType {
 			switch(action) {				
 				case 'event': {
 					switch (operation) {
+						case 'get_all': {
+							method = 'GET';
+							route = '/events';
+							break;
+						}
+
 						case 'post_create': {
 							const metricName = this.getNodeParameter('metricName', 0) as string;
 							const properties = this.getNodeParameter('properties', 0) as {

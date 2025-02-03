@@ -14,6 +14,17 @@ export const EventDescriptionOperations: INodeProperties[] = [
 		},
 		options: [
 			{
+				name: 'Get All',
+				value: 'get_all',
+				action: 'Get all events',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '/events'
+					}
+				}
+			},
+			{
 				name: 'Create Event',
 				value: 'post_create',
 				action: 'Create',
@@ -25,7 +36,7 @@ export const EventDescriptionOperations: INodeProperties[] = [
 				},
 			},
 		],
-		default: 'post_create',
+		default: 'get_all',
 	},
 ];
 
