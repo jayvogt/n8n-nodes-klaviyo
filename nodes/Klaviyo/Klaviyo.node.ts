@@ -118,8 +118,6 @@ export class Klaviyo implements INodeType {
 								}[];
 							};
 
-							method = 'POST';
-
 							body = {
 								data: {
 									type: 'event',
@@ -150,6 +148,7 @@ export class Klaviyo implements INodeType {
 								body.data.attributes[key] = (value as any)[key];
 							}
 
+							method = 'POST';
 							route = `/events`;
 							break;
 						} // end case: post_create
@@ -178,13 +177,14 @@ export class Klaviyo implements INodeType {
 						case 'get_one': {
 							const id = this.getNodeParameter('templateId', 0) as string;
 							const fields = this.getNodeParameter('fields', 0) as string[];
+
+							method = 'GET';
 							route = `/templates/${id}/${ fields.length > 0 ? '?fields[template]=' + fields.join(',') : ''}`;
 							break;
 						} // end case: get_one
 
 						case 'post_render': {
 							const id = this.getNodeParameter('templateId', 0) as string;
-							method = 'POST';
 							const variables = this.getNodeParameter('variables', 0) as {
 								variable: {
 									name: string;
@@ -206,6 +206,7 @@ export class Klaviyo implements INodeType {
 								},
 							};
 
+							method = 'POST';
 							route = `/template-render`;
 							break;
 						} // end case: post_render
