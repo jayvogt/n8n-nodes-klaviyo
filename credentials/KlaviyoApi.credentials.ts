@@ -8,7 +8,7 @@ import {
 export class KlaviyoApi implements ICredentialType {
 	name = 'klaviyoApi';
 	displayName = 'Klaviyo API';
-	documentationUrl = 'https://developers.klaviyo.com/en/docs/retrieve_api_credentials';
+	documentationUrl = 'https://developers.klaviyo.com/en/docs/authenticate_';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Token',

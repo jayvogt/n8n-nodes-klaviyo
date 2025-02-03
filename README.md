@@ -27,9 +27,9 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Credentials
 
-Get the Klaviyo API key at the following link: [[API](https://developers.klaviyo.com/en/docs/retrieve_api_credentials)](https://developers.klaviyo.com/en/docs/retrieve_api_credentials).
+Get the Klaviyo API key at the following link: [[API](https://developers.klaviyo.com/en/docs/authenticate_)](https://developers.klaviyo.com/en/docs/authenticate_).
 
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
-- [Klaviyo API documentation](https://developers.klaviyo.com/reference)
+- [Klaviyo API documentation](https://developers.klaviyo.com/en/docs/)

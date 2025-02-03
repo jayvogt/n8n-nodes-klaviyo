@@ -6,12 +6,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://developers.klaviyo.com/en/docs/retrieve_api_credentials"
+				"url": "https://developers.klaviyo.com/en/docs/authenticate_"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://developers.klaviyo.com/en/docs"
+				"url": "https://developers.klaviyo.com/en/docs/"
 			}
 		]
 	}
