@@ -170,6 +170,11 @@ export class Klaviyo implements INodeType {
 				case 'template': {
 
 					switch(operation) {
+						case 'get_all': {
+							method = 'GET';
+							route = `/templates`;
+						}
+
 						case 'get_one': {
 							const id = this.getNodeParameter('templateId', 0) as string;
 							const fields = this.getNodeParameter('fields', 0) as string[];
