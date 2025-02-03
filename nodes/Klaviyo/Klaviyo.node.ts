@@ -4,6 +4,7 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
+import { NodeConnectionType } from 'n8n-workflow';
 import { EventDescriptionOperations, EventFields } from './EventDescription';
 import { FlowsDescriptionOperations, FlowsFields } from './FlowsDescription';
 import { TemplateDescriptionOperations, TemplateFields } from './TemplateDescription';
@@ -21,8 +22,8 @@ export class Klaviyo implements INodeType {
 		defaults: {
 			name: 'Klaviyo',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
 				name: 'klaviyoApi',
@@ -182,10 +183,10 @@ export class Klaviyo implements INodeType {
 			const response = await this.helpers.httpRequest({
 				method,
 				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
 					Authorization: `Klaviyo-API-Key ${credentials.token}`,
-					revision: '2023-01-24',
+					revision: credentials.revision,
+					accept: 'application/vnd.api+json',
+					'content-type': 'application/vnd.api+json',
 				},
 				url: 'https://a.klaviyo.com/api' + route,
 				body: JSON.stringify(body),
