@@ -88,48 +88,7 @@ export class Klaviyo implements INodeType {
 		for (let i = 0; i < items.length; i++) {
 			let body: any = {};
 
-			switch(action) {
-				case 'template': {
-
-					switch(operation) {
-						case 'get_one': {
-							const id = this.getNodeParameter('templateId', 0) as string;
-							const fields = this.getNodeParameter('fields', 0) as string[];
-							route = `/templates/${id}/${ fields.length > 0 ? '?fields[template]=' + fields.join(',') : ''}`;
-							break;
-						} // end case: get_one
-
-						case 'post_render': {
-							const id = this.getNodeParameter('templateId', 0) as string;
-							method = 'POST';
-							const variables = this.getNodeParameter('variables', 0) as {
-								variable: {
-									name: string;
-									value: string;
-								}[];
-							};
-
-							body = {
-								data: {
-									type: 'template',
-									attributes: {
-										context: variables.variable.reduce((acc, cur) => {
-											acc[cur.name] = cur.value;
-											return acc;
-										}, {} as any),
-
-										id: id,
-									},
-								},
-							};
-
-							route = `/template-render`;
-							break;
-						} // end case: post_render
-					}; // end switch: operation
-					break;
-				} // end case: template
-				
+			switch(action) {				
 				case 'event': {
 					switch (operation) {
 						case 'post_create': {
@@ -201,6 +160,47 @@ export class Klaviyo implements INodeType {
 					} // end switch: operation
 					break;
 				} // end case: flow
+
+				case 'template': {
+
+					switch(operation) {
+						case 'get_one': {
+							const id = this.getNodeParameter('templateId', 0) as string;
+							const fields = this.getNodeParameter('fields', 0) as string[];
+							route = `/templates/${id}/${ fields.length > 0 ? '?fields[template]=' + fields.join(',') : ''}`;
+							break;
+						} // end case: get_one
+
+						case 'post_render': {
+							const id = this.getNodeParameter('templateId', 0) as string;
+							method = 'POST';
+							const variables = this.getNodeParameter('variables', 0) as {
+								variable: {
+									name: string;
+									value: string;
+								}[];
+							};
+
+							body = {
+								data: {
+									type: 'template',
+									attributes: {
+										context: variables.variable.reduce((acc, cur) => {
+											acc[cur.name] = cur.value;
+											return acc;
+										}, {} as any),
+
+										id: id,
+									},
+								},
+							};
+
+							route = `/template-render`;
+							break;
+						} // end case: post_render
+					}; // end switch: operation
+					break;
+				} // end case: template
 			} // end switch: action
 
 			const response = await this.helpers.httpRequest({

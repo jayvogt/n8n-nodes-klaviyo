@@ -109,6 +109,10 @@ const getOperation: INodeProperties[] = [
 		type: 'multiOptions',
 		options: [
 			{
+				name: 'Amp',
+				value: 'amp',
+			},
+			{
 				name: 'Company ID',
 				value: 'company_id',
 			},
