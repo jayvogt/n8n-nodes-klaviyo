@@ -32,10 +32,9 @@ export class Klaviyo implements INodeType {
 		],
 		requestDefaults: {
 			baseURL: 'https://a.klaviyo.com/api',
-			url: '',
 			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
+				Accept: 'application/vnd.api+json',
+				'Content-Type': 'application/vnd.api+json',
 			},
 		},
 		/**
@@ -83,7 +82,8 @@ export class Klaviyo implements INodeType {
 		const action = this.getNodeParameter('resource', 0) as string;
 		const operation = this.getNodeParameter('operation', 0) as string;
 		let method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET';
-		let route = '/templates';
+		let baseUrl = 'https://a.klaviyo.com/api';
+		let route;
 
 		for (let i = 0; i < items.length; i++) {
 			let body: any = {};
@@ -211,7 +211,7 @@ export class Klaviyo implements INodeType {
 					accept: 'application/vnd.api+json',
 					'content-type': 'application/vnd.api+json',
 				},
-				url: 'https://a.klaviyo.com/api' + route,
+				url: baseUrl + route,
 				body: JSON.stringify(body),
 				// ignoreHttpStatusErrors: true,
 			});
