@@ -19,6 +19,28 @@ export const ProfileOperations: INodeProperties[] = [
 		},
 		options: [
 			{
+				name: 'Create',
+				value: 'create',
+				action: 'Create a new profile',
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/profiles',
+					},
+				},
+			},
+			{
+				name: 'Create or Update',
+				value: 'createOrUpdate',
+				action: 'Create or update a profile',
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/profile-import',
+					},
+				},
+			},
+			{
 				name: 'Get Many',
 				value: 'getAll',
 				action: 'Get many profiles',
@@ -41,17 +63,6 @@ export const ProfileOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Create',
-				value: 'create',
-				action: 'Create a new profile',
-				routing: {
-					request: {
-						method: 'POST',
-						url: '/profiles',
-					},
-				},
-			},
-			{
 				name: 'Update',
 				value: 'update',
 				action: 'Update a profile',
@@ -59,17 +70,6 @@ export const ProfileOperations: INodeProperties[] = [
 					request: {
 						method: 'PATCH',
 						url: '=/profiles/{{ $parameter.updateProfileId }}'
-					},
-				},
-			},
-			{
-				name: 'Create or Update',
-				value: 'createOrUpdate',
-				action: 'Create or update a profile',
-				routing: {
-					request: {
-						method: 'POST',
-						url: '/profile-import',
 					},
 				},
 			},
