@@ -62,6 +62,17 @@ export const ProfileOperations: INodeProperties[] = [
 					},
 				},
 			},
+			{
+				name: 'Create or Update',
+				value: 'createOrUpdate',
+				action: 'Create or update a profile',
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/profile-import',
+					},
+				},
+			},
 		],
 		default: 'getAll',
 	},
@@ -80,7 +91,7 @@ const createProfileFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['profile'],
-				operation: ['create']
+				operation: ['create','createOrUpdate']
 			},
 		},
 	},
@@ -93,7 +104,7 @@ const createProfileFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['profile'],
-				operation: ['create']
+				operation: ['create','createOrUpdate']
 			},
 		},
 		typeOptions: {

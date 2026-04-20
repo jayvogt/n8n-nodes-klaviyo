@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2
+- Added **Create or Update Profile** operation
+  - Uses Klaviyo’s new endpoint to create a profile if it doesn’t exist, or update it if it does
+  - No Klaviyo ID required
+  
+
 ## 0.4.1
 - Add API version 2025-07-15
 - Remove deprecated API versions
