@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.3
+- Add API versions
+  - 2026-04-15
+  - 2026-01-15
+  - 2025-10-15
+- Deprecate old API versions
+  - 2025-04-15
+  - 2025-01-15
+  - 2024-10-15
+
 ## 0.4.2
 - Added **Create or Update Profile** operation
   - Uses Klaviyo’s new endpoint to create a profile if it doesn’t exist, or update it if it does

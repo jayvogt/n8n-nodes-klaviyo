@@ -26,23 +26,35 @@ export class KlaviyoApi implements ICredentialType {
 			type: 'options',
 			options: [
 				{
+					name: '2026-04-15',
+					value: '2026-04-15',
+				},
+				{
+					name: '2026-01-15',
+					value: '2026-01-15',
+				},
+				{
+					name: '2025-10-15',
+					value: '2025-10-15',
+				},
+				{
 					name: '2025-07-15',
 					value: '2025-07-15',
 				},
 				{
-					name: '2025-04-15',
+					name: '2025-04-15 (Deprecated)',
 					value: '2025-04-15',
 				},
 				{
-					name: '2025-01-15',
+					name: '2025-01-15 (Deprecated)',
 					value: '2025-01-15',
 				},
 				{
-					name: '2024-10-15',
+					name: '2024-10-15 (Deprecated)',
 					value: '2024-10-15',
 				},
 			],
-			default: '2025-07-15',
+			default: '2026-04-15',
 		},
 	];
 

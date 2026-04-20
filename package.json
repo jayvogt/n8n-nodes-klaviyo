@@ -1,6 +1,6 @@
 {
   "name": "@jayvogt/n8n-nodes-klaviyo",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Nodes and credentials for connecting the Klaviyo CRM to n8n",
   "keywords": [
     "n8n-community-node-package",
