@@ -40,6 +40,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 - Get One
 - Create
 - Update
+- Create or Update
 
 ### Templates
 - Create
