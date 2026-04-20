@@ -1,6 +1,6 @@
 {
   "name": "@jayvogt/n8n-nodes-klaviyo",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Nodes and credentials for connecting the Klaviyo CRM to n8n",
   "keywords": [
     "n8n-community-node-package",
@@ -51,11 +51,11 @@
   "devDependencies": {
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",
-    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "eslint-plugin-n8n-nodes-base": "^1.16.6",
     "gulp": "^4.0.2",
-    "n8n": "^1.88.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
+    "n8n": "^2.16.2",
+    "prettier": "^3.8.3",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "n8n-workflow": "*"

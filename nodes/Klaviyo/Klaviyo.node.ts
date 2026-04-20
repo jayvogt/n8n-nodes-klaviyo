@@ -1,7 +1,6 @@
 import {
 	INodeType,
-	INodeTypeDescription,
-	NodeConnectionType
+	INodeTypeDescription
 } from 'n8n-workflow';
 import { CustomMetricOperations, CustomMetricFields } from './CustomMetric';
 import { EventOperations, EventFields } from './Event';
@@ -21,10 +20,8 @@ export class Klaviyo implements INodeType {
 		defaults: {
 			name: 'Klaviyo',
 		},
-		// eslint-disable-next-line n8n-nodes-base/node-class-description-inputs-wrong-regular-node
-		inputs: [NodeConnectionType.Main],
-		// eslint-disable-next-line n8n-nodes-base/node-class-description-outputs-wrong
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'klaviyoApi',
